@@ -1,0 +1,77 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Live Subtitles</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <header>
+    <h1>Live Subtitles</h1>
+    <span id="dot" class="dot"></span>
+  </header>
+
+  <section id="keySection">
+    <label for="apiKey">OpenAI API key</label>
+    <input id="apiKey" type="password" placeholder="sk-…" autocomplete="off" spellcheck="false">
+    <p class="hint">Stored only in this browser. Get one at platform.openai.com/api-keys.</p>
+  </section>
+
+  <div class="row">
+    <div>
+      <label for="sourceLang">Spoken language</label>
+      <select id="sourceLang"><option value="auto">Auto-detect</option></select>
+    </div>
+    <div>
+      <label for="targetLang">Subtitles in</label>
+      <select id="targetLang"><option value="none">Same as spoken</option></select>
+    </div>
+  </div>
+
+  <button id="toggle" class="primary">Start live subtitles</button>
+  <p id="status" class="status"></p>
+
+  <fieldset>
+    <legend>Saved subtitles for this video</legend>
+    <p id="saved" class="hint">—</p>
+    <label class="check"><input id="playSaved" type="checkbox"> Show saved subtitles in sync (no lag)</label>
+    <div class="buttons">
+      <button id="transcript">Transcript .txt</button>
+      <button id="download">.srt</button>
+      <button id="load">Load .srt…</button>
+      <button id="clear" class="danger">Clear</button>
+    </div>
+    <input id="file" type="file" accept=".srt,.vtt,text/plain" hidden>
+  </fieldset>
+
+  <details>
+    <summary>Prepare ahead (no lag later)</summary>
+    <ol class="hint">
+      <li>Tick <b>Mute while preparing</b> below.</li>
+      <li>Start live subtitles and play the movie at 1.5–2× speed.</li>
+      <li>When it's done, stop. Watch normally and the saved subtitles appear in sync.</li>
+    </ol>
+    <label class="check"><input id="muteOutput" type="checkbox"> Mute while preparing</label>
+  </details>
+
+  <details>
+    <summary>Display &amp; advanced</summary>
+    <label for="fontSize">Text size <span id="fontSizeVal"></span></label>
+    <input id="fontSize" type="range" min="14" max="56" step="1">
+    <label class="check"><input id="showOriginal" type="checkbox"> Also show original line when translating</label>
+    <label class="check"><input id="streaming" type="checkbox"> Streaming mode (lowest lag)</label>
+    <p class="hint">Words appear as they're spoken. About $0.017/min (~$2 per 2-hour movie)
+      vs ~$0.003/min (~$0.35) for standard mode. Applies on next start.</p>
+    <label for="realtimeModel">Streaming model</label>
+    <input id="realtimeModel" type="text" spellcheck="false">
+    <label for="sttModel">Standard-mode model</label>
+    <input id="sttModel" type="text" spellcheck="false">
+    <label for="translateModel">Translation model</label>
+    <input id="translateModel" type="text" spellcheck="false">
+    <button id="changeKey" class="link">Change API key</button>
+  </details>
+
+  <script src="defaults.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>

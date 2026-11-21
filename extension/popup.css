@@ -1,0 +1,38 @@
+:root {
+  --bg: #fff; --fg: #1f1f1f; --muted: #5f6368; --line: #dadce0; --field: #f8f9fa;
+  --accent: #1a73e8; --accent-fg: #fff; --danger: #c5221f; --on: #d93025;
+}
+@media (prefers-color-scheme: dark) {
+  :root { --bg: #202124; --fg: #e8eaed; --muted: #9aa0a6; --line: #3c4043; --field: #2a2b2e;
+          --accent: #8ab4f8; --accent-fg: #202124; --danger: #f28b82; --on: #f28b82; }
+}
+* { box-sizing: border-box; }
+body { width: 340px; margin: 0; padding: 14px 16px 16px; background: var(--bg); color: var(--fg);
+       font: 13px/1.4 system-ui, -apple-system, "Segoe UI", sans-serif; }
+header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+h1 { font-size: 15px; margin: 0; }
+.dot { width: 10px; height: 10px; border-radius: 50%; background: var(--line); }
+.dot.on { background: var(--on); box-shadow: 0 0 0 3px color-mix(in srgb, var(--on) 25%, transparent); }
+label { display: block; font-weight: 600; margin: 8px 0 4px; }
+label.check { display: flex; gap: 6px; align-items: center; font-weight: 400; }
+input[type=text], input[type=password], select { width: 100%; padding: 6px 8px; border: 1px solid var(--line);
+  border-radius: 6px; background: var(--field); color: var(--fg); font: inherit; }
+input[type=range] { width: 100%; }
+.row { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+button { font: inherit; padding: 6px 10px; border-radius: 6px; border: 1px solid var(--line);
+         background: var(--field); color: var(--fg); cursor: pointer; }
+button:disabled { opacity: .5; cursor: default; }
+button.primary { width: 100%; margin-top: 12px; padding: 9px; border: 0; background: var(--accent);
+                 color: var(--accent-fg); font-weight: 600; }
+button.primary.stop { background: var(--danger); }
+button.danger { color: var(--danger); }
+button.link { border: 0; background: none; color: var(--accent); padding: 8px 0 0; }
+.buttons { display: flex; gap: 6px; margin-top: 8px; }
+.hint { color: var(--muted); margin: 4px 0 0; font-size: 12px; }
+ol.hint { padding-left: 18px; }
+.status { min-height: 18px; margin: 8px 0 0; color: var(--muted); }
+.status.error { color: var(--danger); }
+fieldset { border: 1px solid var(--line); border-radius: 8px; margin: 12px 0 0; padding: 6px 10px 10px; }
+legend { font-weight: 600; padding: 0 4px; }
+details { margin-top: 10px; }
+summary { cursor: pointer; font-weight: 600; }

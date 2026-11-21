@@ -1,0 +1,19 @@
+{
+  "manifest_version": 3,
+  "name": "Live Subtitles",
+  "version": "1.0.0",
+  "description": "Live, translated subtitles for any video in a tab: Netflix, Prime Video, YouTube and more.",
+  "minimum_chrome_version": "116",
+  "permissions": ["tabCapture", "offscreen", "storage", "activeTab", "scripting", "unlimitedStorage"],
+  "host_permissions": ["https://api.openai.com/*"],
+  "background": { "service_worker": "background.js" },
+  "action": { "default_popup": "popup.html", "default_title": "Live Subtitles" },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"],
+      "all_frames": true,
+      "run_at": "document_idle"
+    }
+  ]
+}
